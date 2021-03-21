@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake</title>
+    <style>
+        /* vw en vh zijn viewport dimensies, 100 vw of vh betekent 100% van het beschikbare ruimte op de viewport(beeldscherm). */
+        body {
+            min-height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            background-color: black;
+        }
+
+        /* vmin gebruikt de ratio van de kleinste kant van het scherm en bepaalt hiermee de ratio van haar eigen zijde.
+        dat betekent wanneer de hoogte kleiner is dan de breedte dan is 1vmin evengroot als 1vh, wanneer de breedte kleiner
+        is dan de hoogte dan is 1vmin 1vw.
+
+        vmax werkt tegenovergesteld van vmin. Wanneer de hoogte groter is dan de breedte dan is 1vmax gelijk aan 1vh,
+        en wederzijds wanneer de breedte groter is dan de hoogte dan is 1vmax gelijk aan 1vw. */
+        #game-board {
+            background-color: lightgray;
+            width: 100vmin;
+            height: 100vmin;
+            margin: auto;
+
+            display: grid;
+            grid-template-rows: repeat(21, 1fr);
+            grid-template-columns: repeat(21, 1fr);
+        }
+
+        .snake {
+            background-color: green;
+            border: .25vmin solid black;
+        }
+
+        .food {
+            background-color: red;
+            border: .25vmin solid black;
+        }
+    </style>
+
+    <!-- Gebruik defer om de browser te laten weten dat het script geladen moet worden NA de html body.
+    Gebruik "type="module" om de browser te laten weten dat het niet om 1 js file gaat maar om meerdere files die met 
+    de import en export commands tot 1 algeheel programma wordt gebracht, maar om voor wat orde te zorgen is het handig
+    om niet alle logica in 1 file te hebben.-->
+    <script src="game.js" defer type="module"></script>
+</head>
+
+<body>
+    <div id="game-board"></div>
+</body>
+</html>
