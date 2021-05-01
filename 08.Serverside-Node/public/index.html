@@ -1,0 +1,34 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      if ('geolocation' in navigator) {
+        console.log('geolocation available');
+
+        /** Voordat de ES6 syntax geïntroduceerd werd, werden callback functies op deze manier geschreven:
+         * navigator.geolocation.getCurrentPosition(function (position) {
+          console.log(position.coords.latitude);
+          console.log(position.coords.longitude);
+          });
+         * In ES6 kunnen callback functies op een makkelijkere manier als een arrow functie geschreven worden
+         */
+        navigator.geolocation.getCurrentPosition((position) => {
+          const lat = position.coords.latitude;
+          const long = position.coords.longitude;
+          console.log(position);
+        });
+      } else {
+        console.log('geolocation unavailable');
+      }
+    </script>
+    <h1>Data Selfie App</h1>
+
+    <p>Latitude: <span id="latitude"></span></p>&deg;</br>
+    <p>Longitude: <span id="longitude"></span>&deg;</p>
+  </body>
+</html>
