@@ -6,7 +6,15 @@
     <title>Document</title>
   </head>
   <body>
+    <h1>Data Selfie App</h1>
+    <p>
+    Latitude: <span id="lat"></span>&deg;</br>
+    Longitude: <span id="long"></span>&deg;
+    </p>
+    <button id="geolocate">Geolocate</button>
+
     <script>
+      document.getElementById('geolocate').addEventListener('click', event => {
       if ('geolocation' in navigator) {
         console.log('geolocation available');
 
@@ -18,17 +26,18 @@
          * In ES6 kunnen callback functies op een makkelijkere manier als een arrow functie geschreven worden
          */
         navigator.geolocation.getCurrentPosition((position) => {
-          const lat = position.coords.latitude;
-          const long = position.coords.longitude;
+          const latitude = position.coords.latitude;
+          const longitude = position.coords.longitude;
           console.log(position);
+
+          document.getElementById("lat").textContent = latitude;
+          document.getElementById("long").textContent = longitude;
         });
       } else {
         console.log('geolocation unavailable');
       }
-    </script>
-    <h1>Data Selfie App</h1>
+    });
 
-    <p>Latitude: <span id="latitude"></span></p>&deg;</br>
-    <p>Longitude: <span id="longitude"></span>&deg;</p>
+    </script>
   </body>
 </html>
