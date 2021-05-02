@@ -21,6 +21,7 @@ app.post('/api', (request, response) => {
   database.insert(data);
   response.json({
     status: 'succes',
+    firstname: data.firstname,
     timestamp: timestamp,
     latitude: data.lat,
     longitude: data.lon,

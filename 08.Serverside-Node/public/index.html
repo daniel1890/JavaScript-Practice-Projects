@@ -6,37 +6,25 @@
     <title>Document</title>
   </head>
   <body>
+
     <h1>Data Selfie App</h1>
     <p>
     Latitude: <span id="latitude"></span>&deg;</br>
     Longitude: <span id="longitude"></span>&deg;
     </p>
+
+    <!-- Input voor de gebruiker-->
+    <label for="fname">First name:</label>
+    <input id="fname" type="text" value="Bob">
     <button id="submit">Geolocate</button>
 
     <script>
+      let lat, lon;
       const button = document.getElementById('submit');
-      button.addEventListener('click', event => {
-      if ('geolocation' in navigator) {
-        console.log('geolocation available');
-
-        /** Voordat de ES6 syntax geïntroduceerd werd, werden callback functies op deze manier geschreven:
-         * navigator.geolocation.getCurrentPosition(function (position) {
-          console.log(position.coords.latitude);
-          console.log(position.coords.longitude);
-          });
-         * In ES6 kunnen callback functies op een makkelijkere manier als een arrow functie geschreven worden
-         */
-
-        navigator.geolocation.getCurrentPosition(async position => {
-          const lat = position.coords.latitude;
-          const lon = position.coords.longitude;
-          console.log(position);
-
-          document.getElementById("latitude").textContent = lat;
-          document.getElementById("longitude").textContent = lon;
-
-          const data = {lat, lon};
-          const options = {
+      button.addEventListener('click', async event => {
+        const firstname = document.getElementById('fname').value;
+        const data = { firstname, lat, lon};
+        const options = {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json'
@@ -47,10 +35,27 @@
           const json = await response.json();
           console.log(json);
         });
+
+      if ('geolocation' in navigator) {
+        console.log('geolocation available');
+        /** Voordat de ES6 syntax geïntroduceerd werd, werden callback functies op deze manier geschreven:
+         *  navigator.geolocation.getCurrentPosition(function (position) {
+         *  console.log(position.coords.latitude);
+         *  console.log(position.coords.longitude);
+         *  });
+         * In ES6 kunnen callback functies op een makkelijkere manier als een arrow functie geschreven worden
+         */
+        navigator.geolocation.getCurrentPosition(async position => {
+          lat = position.coords.latitude;
+          lon = position.coords.longitude;
+          console.log(position);
+
+          document.getElementById("latitude").textContent = lat;
+          document.getElementById("longitude").textContent = lon;
+      });
       } else {
         console.log('geolocation unavailable');
       }
-    });
 
     </script>
   </body>
