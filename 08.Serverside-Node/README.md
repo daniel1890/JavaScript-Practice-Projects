@@ -23,9 +23,12 @@ Creeër een button in de HTML markup en voeg een Event Listener hieraan toe, wan
 ### Deel 3
 
 Voeg NedDB toe met npm, dit is een licht-gewicht database client waarmee je makkelijk data op een persistent manier op kunt slaan, dit is wel een lightweight client dus dit is alleen bruikbaar voor kleinere projecten.
-Zet de nodige code in index.js om NedB te gebruiken, met wat simpele code creeër je al heel snel een simpele database waarin je server alle data opslaat, NedB maakt een .db file aan en hierin wordt alle data persistently in op geslagen.
+Zet de nodige code in index.js om NedB te gebruiken, met wat simpele code creeër je al heel snel een simpele database waarin je server alle data opslaat, NedB maakt een .db file aan en hierin wordt alle data persistently in opgeslagen als json.
+Voeg een input box in waarin de gebruiker zijn naam in kan voeren, dit gaat gewoon via HTML markup, met JS voeg je een Event Listener toe aan de knop, wanneer de knop ingedrukt wordt wordt de text in de input opgeslagen als data en verwerkt naar een JSON bestand samen met de lattitude en longitude.
 
 ### Deel 4
+
+Maak een nieuwe HTML pagina aan en noem die all.html, in deze pagina wordt alle data vertoond die verkregen wordt via de index.html pagina. Via een fetch call in de all.html pagina maak je makkelijk een Get call naar de server. Via node zet je alle data van de database in een constante, hierna kan je makkelijk met de find functie de database doorzoeken, wanneer je geen sleutelwoord in het find veld invoerd dan wordt alle data opgehaald. Zo gemakkelijk is het dus om via een html pagina een Get call te maken naar een server die met Node verbonden is.
 
 ## Packages
 
