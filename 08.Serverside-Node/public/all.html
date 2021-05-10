@@ -7,6 +7,11 @@
   </head>
   <body>
     <h1>Data Selfie App</h1>
+    <div>
+      <a href="/">Enter Name</a>
+      |
+      <a href="all.html">Show Data</a>
+    </div>
     <script>
       getData();
       async function getData() {
@@ -14,13 +19,13 @@
         const data = await response.json();
 
         for (item of data) {
-          const root = document.createElement('div');
+          const root = document.createElement('p');
           const name = document.createElement('div');
           const geo = document.createElement('div');
           const date = document.createElement('div');
 
           name.textContent = `name: ${item.firstname}`;
-          geo.textContent = `${item.lat}°;, ${item.lon}°;`;
+          geo.textContent = `${item.lat}°, ${item.lon}°`;
 
           const dateString = new Date(item.timestamp).toLocaleString();
           date.textContent = dateString;
