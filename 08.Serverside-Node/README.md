@@ -30,6 +30,10 @@ Voeg een input box in waarin de gebruiker zijn naam in kan voeren, dit gaat gewo
 
 Maak een nieuwe HTML pagina aan en noem die all.html, in deze pagina wordt alle data vertoond die verkregen wordt via de index.html pagina. Via een fetch call in de all.html pagina maak je makkelijk een Get call naar de server. Via node zet je alle data van de database in een constante, hierna kan je makkelijk met de find functie de database doorzoeken, wanneer je geen sleutelwoord in het find veld invoerd dan wordt alle data opgehaald. Zo gemakkelijk is het dus om via een html pagina een Get call te maken naar een server die met Node verbonden is.
 
+### Deel 5
+
+Voeg p5.js library toe om webcamherkenning toe te voegen aan de pagina.
+
 ## Packages
 
 - Express
