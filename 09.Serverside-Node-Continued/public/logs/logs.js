@@ -1,3 +1,12 @@
+// Creeër een wereldmap mbv leaflet.js
+const mymap = L.map('worldMap').setView([0, 0], 1);
+const attribution =
+  '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors';
+
+const tileUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+const tiles = L.tileLayer(tileUrl, attribution);
+tiles.addTo(mymap);
+
 getData();
 
 async function getData() {
@@ -16,6 +25,9 @@ async function getData() {
 
     root.append(name, geo, date);
     document.body.append(root);
+
+    // Voeg een nieuwe marker toe aan de wereld map voor elke data in de database.
+    L.marker([item.lat, item.lon]).addTo(mymap);
   }
 
   console.log(data);
