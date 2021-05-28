@@ -36,18 +36,32 @@ app.post('/api', (request, response) => {
   response.json(data);
 });
 
-app.get('/weather', async (request, response) => {
+app.get('/weather/:latlon', async (request, response) => {
+  // Gebruik de request parameters waar de latlon waardes ontvangen worden die vanuit de client-side verzonden worden.
+  // Split de variabele in een array en stop deze waardes in hun eigen constantes.
+  console.log(request.params);
+  const latlon = request.params.latlon.split(',');
+  console.log(latlon);
+  const lat = latlon[0];
+  const lon = latlon[1];
+
   // get your key from app.tomorrow.io/development/keys
   const apikey = 'd88962207d637b67cb591d89bb248d8e';
 
-  // pick the location, as a latlong pair
-  let location = [51.8056, 5.8282];
-
   // set the Timelines GET endpoint as the target URL
-  //const api_url = 'api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={API key}';
-  const api_url = `https://api.openweathermap.org/data/2.5/weather?lat=51.8056&lon=5.8282&appid=${apikey}`;
+  const weather_url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apikey}&units=metric`;
+  const airq_url = `http://api.openweathermap.org/data/2.5/air_pollution?lat=${lat}&lon=${lon}&appid=${apikey}&units=metric`;
 
-  const fetch_response = await fetch(api_url);
-  const json = await fetch_response.json();
-  response.json(json);
+  const weather_response = await fetch(weather_url);
+  const airq_response = await fetch(airq_url);
+
+  const weather_data = await weather_response.json();
+  const airq_data = await airq_response.json();
+
+  const data = {
+    weather: weather_data,
+    air: airq_data,
+  };
+
+  response.json(data);
 });
