@@ -3,6 +3,7 @@ let lat, lon;
 if ('geolocation' in navigator) {
   console.log('geolocation available');
   navigator.geolocation.getCurrentPosition(async (position) => {
+    let lat, long, weather, air;
     try {
       lat = position.coords.latitude;
       lon = position.coords.longitude;
@@ -27,22 +28,23 @@ if ('geolocation' in navigator) {
 
       document.getElementById('co').textContent = air.list[0].components.co;
       document.getElementById('no').textContent = air.list[0].components.no;
-
-      // Stop alle data in 1 variabele, hierna wordt deze data naar de server POSTED.
-      const data = { lat, lon, weather, air };
-      const options = {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      };
-      const response_db = await fetch('/api', options);
-      const json_db = await response_db.json();
-      console.log(json_db);
     } catch (error) {
       console.error(error);
+      air = { value: -1 };
     }
+
+    // Stop alle data in 1 variabele, hierna wordt deze data naar de server POSTED.
+    const data = { lat, lon, weather, air };
+    const options = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    };
+    const response_db = await fetch('/api', options);
+    const json_db = await response_db.json();
+    console.log(json_db);
   });
 } else {
   console.log('geolocation unavailable');
