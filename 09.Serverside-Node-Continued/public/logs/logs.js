@@ -24,7 +24,7 @@ async function getData() {
     const dateString = new Date(item.timestamp).toLocaleString();
     date.textContent = dateString;
 
-    root.append(name, geo, date);
+    root.append(geo, date);
     document.body.append(root);
 
     const txt = `This marker was added on: ${dateString}.<br> The weather here at ${item.lat}&deg;, ${item.lon}&deg; has ${item.weather.weather[0].description} with a temperature of 

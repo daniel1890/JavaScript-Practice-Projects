@@ -4,6 +4,8 @@ const { request, response } = require('express');
 const express = require('express');
 const Datastore = require('nedb');
 const app = express();
+require('dotenv').config();
+console.log(process.env);
 
 // Nodige modules voor gebruik van Clima cel API
 const fetch = require('node-fetch');
@@ -46,7 +48,7 @@ app.get('/weather/:latlon', async (request, response) => {
   const lon = latlon[1];
 
   // get your key from app.tomorrow.io/development/keys
-  const apikey = 'd88962207d637b67cb591d89bb248d8e';
+  const apikey = process.env.API_KEY;
 
   // set the Timelines GET endpoint as the target URL
   const weather_url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apikey}&units=metric`;
